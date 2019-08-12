@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ProductApp.Models
 {
-    public class Items
+    public class Products
     {
         public int Id { get; set; }
         public string Name { get; set; }

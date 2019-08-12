@@ -24,27 +24,27 @@ namespace ProductApp.Controllers
                 //_context.Product.Add(
                 //    new Product { Id = 1, Name = "Tomato Soup", Category = "Groceries", Price = 1 });
 
-                Items[] products = new Items[]
+                Products[] products = new Products[]
                 {
-                    new Items { Id = 1, Name = "Tomato Soup", Category = "Groceries", Price = 1 },
-                    new Items { Id = 2, Name = "Yo-yo", Category = "Toys", Price = 3.75M },
-                    new Items { Id = 3, Name = "Hammer", Category = "Hardware", Price = 16.99M }
+                    new Products { Id = 1, Name = "Tomato Soup", Category = "Groceries", Price = 1 },
+                    new Products { Id = 2, Name = "Yo-yo", Category = "Toys", Price = 3.75M },
+                    new Products { Id = 3, Name = "Hammer", Category = "Hardware", Price = 16.99M }
                 };
 
-                _context.Add<Items[]>(products);
+                _context.Add<Products[]>(products);
             }
         }
 
         // GET: api/Products
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Items>>> GetProduct()
+        public async Task<ActionResult<IEnumerable<Products>>> GetProduct()
         {
             return await _context.Product.ToListAsync();
         }
 
         // GET: api/Products/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Items>> GetProduct(int id)
+        public async Task<ActionResult<Products>> GetProduct(int id)
         {
             var product = await _context.Product.FindAsync(id);
 
@@ -58,7 +58,7 @@ namespace ProductApp.Controllers
 
         // PUT: api/Products/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutProduct(int id, Items product)
+        public async Task<IActionResult> PutProduct(int id, Products product)
         {
             if (id != product.Id)
             {
@@ -88,7 +88,7 @@ namespace ProductApp.Controllers
 
         // POST: api/Products
         [HttpPost]
-        public async Task<ActionResult<Items>> PostProduct(Items product)
+        public async Task<ActionResult<Products>> PostProduct(Products product)
         {
             _context.Product.Add(product);
             await _context.SaveChangesAsync();
@@ -98,7 +98,7 @@ namespace ProductApp.Controllers
 
         // DELETE: api/Products/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Items>> DeleteProduct(int id)
+        public async Task<ActionResult<Products>> DeleteProduct(int id)
         {
             var product = await _context.Product.FindAsync(id);
             if (product == null)
