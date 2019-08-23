@@ -19,34 +19,34 @@ namespace ProductApp.Controllers
         {
             _context = context;
 
-            if (_context.Product.Count() == 0)
+            if (_context.Products.Count() == 0)
             {
                 //_context.Product.Add(
                 //    new Product { Id = 1, Name = "Tomato Soup", Category = "Groceries", Price = 1 });
 
-                Products[] products = new Products[]
+                Product[] products = new Product[]
                 {
-                    new Products { Id = 1, Name = "Tomato Soup", Category = "Groceries", Price = 1 },
-                    new Products { Id = 2, Name = "Yo-yo", Category = "Toys", Price = 3.75M },
-                    new Products { Id = 3, Name = "Hammer", Category = "Hardware", Price = 16.99M }
+                    new Product { Id = 1, Name = "Tomato Soup", Category = "Groceries", Price = 1 },
+                    new Product { Id = 2, Name = "Yo-yo", Category = "Toys", Price = 3.75M },
+                    new Product { Id = 3, Name = "Hammer", Category = "Hardware", Price = 16.99M }
                 };
 
-                _context.Add<Products[]>(products);
+                _context.Add<Product[]>(products);
             }
         }
 
         // GET: api/Products
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Products>>> GetProduct()
+        public async Task<ActionResult<IEnumerable<Product>>> GetProduct()
         {
-            return await _context.Product.ToListAsync();
+            return await _context.Products.ToListAsync();
         }
 
         // GET: api/Products/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Products>> GetProduct(int id)
+        public async Task<ActionResult<Product>> GetProduct(int id)
         {
-            var product = await _context.Product.FindAsync(id);
+            var product = await _context.Products.FindAsync(id);
 
             if (product == null)
             {
@@ -58,7 +58,7 @@ namespace ProductApp.Controllers
 
         // PUT: api/Products/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutProduct(int id, Products product)
+        public async Task<IActionResult> PutProduct(int id, Product product)
         {
             if (id != product.Id)
             {
@@ -88,9 +88,9 @@ namespace ProductApp.Controllers
 
         // POST: api/Products
         [HttpPost]
-        public async Task<ActionResult<Products>> PostProduct(Products product)
+        public async Task<ActionResult<Product>> PostProduct(Product product)
         {
-            _context.Product.Add(product);
+            _context.Products.Add(product);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetProduct", new { id = product.Id }, product);
@@ -98,15 +98,15 @@ namespace ProductApp.Controllers
 
         // DELETE: api/Products/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Products>> DeleteProduct(int id)
+        public async Task<ActionResult<Product>> DeleteProduct(int id)
         {
-            var product = await _context.Product.FindAsync(id);
+            var product = await _context.Products.FindAsync(id);
             if (product == null)
             {
                 return NotFound();
             }
 
-            _context.Product.Remove(product);
+            _context.Products.Remove(product);
             await _context.SaveChangesAsync();
 
             return product;
@@ -114,7 +114,7 @@ namespace ProductApp.Controllers
 
         private bool ProductExists(int id)
         {
-            return _context.Product.Any(e => e.Id == id);
+            return _context.Products.Any(e => e.Id == id);
         }
     }
 }

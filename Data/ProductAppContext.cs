@@ -13,6 +13,6 @@ namespace ProductApp.Models
         {
         }
 
-        public DbSet<ProductApp.Models.Products> Product { get; set; }
+        public DbSet<ProductApp.Models.Product> Products { get; set; }
     }
 }
