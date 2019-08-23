@@ -8,7 +8,7 @@ namespace ProductApp.Models
 {
     public class ProductAppContext : DbContext
     {
-        public ProductAppContext (DbContextOptions<ProductAppContext> options)
+        public ProductAppContext (DbContextOptions<ProductContext> options)
             : base(options)
         {
         }
