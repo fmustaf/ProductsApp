@@ -31,8 +31,13 @@ namespace ProductApp.Controllers
                     new Product { Id = 3, Name = "Hammer", Category = "Hardware", Price = 16.99M }
                 };
 
-                _context.Add<Product[]>(products);
-            }
+                //_context.Add<Product[]>(products);
+                foreach (Product product in products)
+                {
+                    _context.Products.Add(product);
+                }
+                _context.SaveChanges();
+            }            
         }
 
         // GET: api/Products
