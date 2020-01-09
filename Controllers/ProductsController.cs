@@ -34,7 +34,8 @@ namespace ProductApp.Controllers
                     new Product { Id = 6, Name = "Nails", Category = "Hardware", Price = 1.07M },
                     new Product { Id = 7, Name = "Apples", Category = "Groceries", Price = 2M },
                     new Product { Id = 8, Name = "Tennis Racket", Category = "Sports", Price = 30.75M },
-                    new Product { Id = 9, Name = "Paint", Category = "Hardware", Price = 13.99M }
+                    new Product { Id = 9, Name = "Paint", Category = "Hardware", Price = 13.99M },
+                    new Product{ Id=10, Name="Cleaning Supplies", Category = "Home", Price = 15.75M}
                 };
 
                 //_context.Add<Product[]>(products);

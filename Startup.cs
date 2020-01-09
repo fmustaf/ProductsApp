@@ -12,7 +12,10 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
 using ProductApp.Models;
-using Swashbuckle.AspNetCore.Swagger;
+//using Swashbuckle.AspNetCore.Swagger;
+//using Swagger.Net;
+//using Microsoft.OpenApi.Models;
+using NSwag.AspNetCore;
 
 namespace ProductApp
 {
@@ -35,10 +38,14 @@ namespace ProductApp
                 options.UseInMemoryDatabase("ProductList"));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new Info { Title = "Simple Items API", Version = "v1" });
-            });
+            //Used with OLD Swashbuckle
+            //services.AddSwaggerGen(c =>
+            //{
+            //    c.SwaggerDoc("v1", new Info { Title = "Simple Items API", Version = "v1" });
+            //});
+
+            services.AddOpenApiDocument();
+            //services.AddSwaggerDocument();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,16 +64,25 @@ namespace ProductApp
             app.UseHttpsRedirection();
 
             // Enable middleware to serve generated Swagger as a JSON endpoint.
-            app.UseSwagger();
+            //app.UseSwagger();
 
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), 
             // specifying the Swagger JSON endpoint.
-            app.UseSwaggerUI(c =>
+            //app.UseSwaggerUI(c =>
+            //{
+            //    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Simple Products and Items API");
+            //});
+
+            app.UseMvc(routes =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Simple Items API");
+                routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
             });
 
-            app.UseMvc();
+            // httpConfiguration
+            //app.EnableSwagger(c => c.SingleApiVersion("v1", "A title for your API")).EnableSwaggerUi();
+
+            app.UseOpenApi();
+            app.UseSwaggerUi3();
         }
     }
 }
